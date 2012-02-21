@@ -1,0 +1,14 @@
+require 'yaml'
+Dir["lib/**/*.rb"].sort.each { |file| require(File.dirname(__FILE__) + "/../"+ file) }
+
+puts "Anteriore cloud configuration starting"
+puts "please enter the amazon configuration settings"
+puts "enter the amazon api key"
+key = gets.chomp
+puts "enter the amazon username"
+username = gets.chomp
+hash = {:amazon => {:key => key, :username => username}}
+
+#Amazon object
+File.open(Amazon.yaml_path, 'w') {|file| file.write(hash.to_yaml)}
+
